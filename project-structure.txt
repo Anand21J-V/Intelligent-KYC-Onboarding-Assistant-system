@@ -1,0 +1,12 @@
+intelligent-kyc-onboarding-assistant/
+├── dvc.yaml
+├── dvc.lock
+└── keyboard-onboarding-assistant/
+    ├── main.py
+    ├── ocr_utils.py
+    ├── groq_utils.py
+    ├── validation_utils.py
+    └── scripts/
+        ├── run_ocr.py
+        ├── run_llm.py
+        └── run_validation.py

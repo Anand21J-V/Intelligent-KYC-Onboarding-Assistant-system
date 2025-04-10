@@ -1,0 +1,30 @@
+schema: '2.0'
+stages:
+  ocr_stage:
+    cmd: python kyc_onboarding_assistant/scripts/run_ocr.py
+    deps:
+    - path: kyc_onboarding_assistant/scripts/run_ocr.py
+      hash: md5
+      md5: b243a8c83149ef78c4824048f282aa18
+      size: 464
+    outs:
+    - path: kyc_onboarding_assistant/output/ocr_output.txt
+      hash: md5
+      md5: d41d8cd98f00b204e9800998ecf8427e
+      size: 0
+  llm_stage:
+    cmd: python kyc_onboarding_assistant/scripts/run_llm.py
+    deps:
+    - path: kyc_onboarding_assistant/output/ocr_output.txt
+      hash: md5
+      md5: d41d8cd98f00b204e9800998ecf8427e
+      size: 0
+    - path: kyc_onboarding_assistant/scripts/run_llm.py
+      hash: md5
+      md5: b8695cedb4ebdcb5eb7f9ecfc4084eff
+      size: 894
+    outs:
+    - path: kyc_onboarding_assistant/output/llm_output.json
+      hash: md5
+      md5: 29b1b988e0fba6f42dd1e75ce148b74d
+      size: 505

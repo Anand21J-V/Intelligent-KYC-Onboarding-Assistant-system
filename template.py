@@ -10,22 +10,27 @@ list_of_files = [
     "kyc_onboarding_assistant/ocr_utils.py",
     "kyc_onboarding_assistant/groq_utils.py",
     "kyc_onboarding_assistant/validation_utils.py",
-    "project-structure.txt",
-    "requirements.txt"
+    "kyc_onboarding_assistant/scripts/run_ocr.py",
+    "kyc_onboarding_assistant/scripts/run_llm.py",
+    "kyc_onboarding_assistant/scripts/run_validation.py",
+    "kyc_onboarding_assistant/data/input.jpg",  
+    "kyc_onboarding_assistant/output/.gitkeep",  
+    "dvc.yaml",
+    "requirements.txt",
+    "project-structure.txt"
 ]
 
 for filepath in list_of_files:
     filepath = Path(filepath)
     filedir, filename = os.path.split(filepath)
 
-    if filedir !="":
+    if filedir != "":
         os.makedirs(filedir, exist_ok=True)
-        logging.info(f"Creating directory; {filedir} for the file: {filename}")
+        logging.info(f"Creating directory: {filedir} for the file: {filename}")
 
     if (not os.path.exists(filepath)) or (os.path.getsize(filepath) == 0):
         with open(filepath, "w") as f:
             pass
-            logging.info(f"Creating empty file: {filepath}")
-
+        logging.info(f"Creating empty file: {filepath}")
     else:
-        logging.info(f"{filename} is already exists")
+        logging.info(f"{filename} already exists")
