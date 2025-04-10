@@ -6,9 +6,12 @@ logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 
 list_of_files = [
     "src/__init__.py",
-    "app.py",
-    "experiments/model1.py",
-    "experiments/model2.py"
+    "kyc_onboarding_assistant/app.py",
+    "kyc_onboarding_assistant/ocr_utils.py",
+    "kyc_onboarding_assistant/groq_utils.py",
+    "kyc_onboarding_assistant/validation_utils.py",
+    "project-structure.txt",
+    "requirements.txt"
 ]
 
 for filepath in list_of_files:
