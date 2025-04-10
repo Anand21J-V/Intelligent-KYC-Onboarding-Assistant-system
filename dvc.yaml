@@ -1,37 +1,17 @@
 stages:
-  ocr:
-    cmd: python keyboard-onboarding-assistant/scripts/run_ocr.py keyboard-onboarding-assistant/data/input.jpg
-      keyboard-onboarding-assistant/output/ocr_text.txt
-    deps:
-    - keyboard-onboarding-assistant/data/input.jpg
-    - keyboard-onboarding-assistant/ocr_utils.py
-    - keyboard-onboarding-assistant/scripts/run_ocr.py
-    outs:
-    - keyboard-onboarding-assistant/output/ocr_text.txt
-
-  llm_extraction:
-    cmd: python keyboard-onboarding-assistant/scripts/run_llm.py keyboard-onboarding-assistant/output/ocr_text.txt
-      keyboard-onboarding-assistant/output/llm_output.json
-    deps:
-    - keyboard-onboarding-assistant/output/ocr_text.txt
-    - keyboard-onboarding-assistant/groq_utils.py
-    - keyboard-onboarding-assistant/scripts/run_llm.py
-    outs:
-    - keyboard-onboarding-assistant/output/llm_output.json
-
-  validate:
-    cmd: python keyboard-onboarding-assistant/scripts/run_validation.py keyboard-onboarding-assistant/output/llm_output.json
-      keyboard-onboarding-assistant/output/validation.json
-    deps:
-    - keyboard-onboarding-assistant/output/llm_output.json
-    - keyboard-onboarding-assistant/validation_utils.py
-    - keyboard-onboarding-assistant/scripts/run_validation.py
-    outs:
-    - keyboard-onboarding-assistant/output/validation.json
   ocr_stage:
-    cmd: \
+    cmd: python kyc_onboarding_assistant/scripts/run_ocr.py
+    deps:
+    - kyc_onboarding_assistant/scripts/run_ocr.py
+    outs:
+    - kyc_onboarding_assistant/output/ocr_output.txt
   llm_stage:
-    cmd: \
+    cmd: python kyc_onboarding_assistant/scripts/run_llm.py
+    deps:
+    - kyc_onboarding_assistant/output/ocr_output.txt
+    - kyc_onboarding_assistant/scripts/run_llm.py
+    outs:
+    - kyc_onboarding_assistant/output/llm_output.json
   validation_stage:
     cmd: python kyc_onboarding_assistant/scripts/run_validation.py
     deps:
