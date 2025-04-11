@@ -10,12 +10,8 @@ list_of_files = [
     "kyc_onboarding_assistant/ocr_utils.py",
     "kyc_onboarding_assistant/groq_utils.py",
     "kyc_onboarding_assistant/validation_utils.py",
-    "kyc_onboarding_assistant/scripts/run_ocr.py",
-    "kyc_onboarding_assistant/scripts/run_llm.py",
-    "kyc_onboarding_assistant/scripts/run_validation.py",
     "kyc_onboarding_assistant/data/input.jpg",  
     "kyc_onboarding_assistant/output/.gitkeep",  
-    "dvc.yaml",
     "requirements.txt",
     "project-structure.txt"
 ]
