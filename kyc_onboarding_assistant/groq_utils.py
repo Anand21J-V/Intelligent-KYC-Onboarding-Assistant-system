@@ -1,49 +1,47 @@
+import requests
 import os
 import logging
-from groq import Groq
 
-# Setup logging
-logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s')
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-# Get API key
-api_key = "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"
+GROQ_API_KEY = "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"  # Replace with your actual key
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
-if not api_key:
-    logging.error("GROQ_API_KEY environment variable not set.")
-    raise EnvironmentError("GROQ_API_KEY environment variable not set.")
+def extract_fields_with_groq_llm(text):
+    headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type": "application/json"
+    }
 
-# Initialize Groq client
-logging.info("Initializing Groq client.")
-client = Groq(api_key=api_key)
-
-def extract_information_with_llm(text: str) -> str:
-    """
-    Uses LLM to extract structured KYC information from raw OCR text.
-    """
-    logging.info("Preparing prompt for Groq LLM.")
     prompt = f"""
-    Extract the following fields from the OCR text provided:
-    - PAN Number
-    - GST Number
-    - Registration Date
+You are an intelligent assistant. Extract KYC fields from the following OCR text:
 
-    Return the result in JSON format.
+{text}
 
-    OCR Text:
-    {text}
-    """
+Return the output in pure JSON like this:
+{{
+  "Document Type": "",
+  "PAN Number": "",
+  "GST Number": "",
+  "Company Name": "",
+  "Date of Incorporation": ""
+}}
+"""
 
-    logging.info("Sending prompt to Groq LLM.")
+    payload = {
+        "model": "mixtral-8x7b-32768",  # or llama3-8b-8192
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.2
+    }
+
     try:
-        completion = client.chat.completions.create(
-            model="llama3-70b-8192",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.2,
-            max_tokens=512
-        )
-        response = completion.choices[0].message.content
-        logging.info("Received response from Groq LLM.")
-        return response
+        logger.info("Sending request to GROQ LLM API.")
+        response = requests.post(GROQ_URL, headers=headers, json=payload)
+        response.raise_for_status()
+        result = response.json()
+        logger.info("LLM response received successfully.")
+        return result['choices'][0]['message']['content']
     except Exception as e:
-        logging.error(f"Error occurred during LLM extraction: {e}")
-        raise
+        logger.error(f"GROQ API error: {e}")
+        return "{}"

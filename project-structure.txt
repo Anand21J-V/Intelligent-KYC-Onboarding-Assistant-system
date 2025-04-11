@@ -1,12 +1,8 @@
-intelligent-kyc-onboarding-assistant/
-├── dvc.yaml
-├── dvc.lock
-└── keyboard-onboarding-assistant/
-    ├── main.py
-    ├── ocr_utils.py
-    ├── groq_utils.py
-    ├── validation_utils.py
-    └── scripts/
-        ├── run_ocr.py
-        ├── run_llm.py
-        └── run_validation.py
+intelligent_kyc_assistant/
+│
+├── app.py               - for Streamlit frontend
+├── groq_utils.py        - for GROQ LLM logic
+├── ocr_utils.py         - for OCR extraction
+├── match_utils.py       - for Validation & matching
+├── uploads/             - for Folder to store uploaded files
+├── requirements.txt

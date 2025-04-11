@@ -1,21 +1,6 @@
-# Streamlit for the frontend
 streamlit==1.32.2
-
-# OCR libraries
 pytesseract==0.3.10
-opencv-python==4.9.0.80
-
-# LLM Client for Groq
-groq==0.5.0
-
-# Image processing and utility
 Pillow==10.2.0
-
-# Parsing and validation
-regex==2023.12.25
-
-# JSON processing
-json5==0.9.25
-
-# Environment variable management
-python-dotenv==1.0.1
+requests==2.31.0
+fuzzywuzzy==0.18.0
+python-Levenshtein==0.23.0
