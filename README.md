@@ -1,7 +1,3 @@
-Certainly! Based on the information available from the repository [Anand21J-V/Intelligent-KYC-Onboarding-Assistant-system](https://github.com/Anand21J-V/Intelligent-KYC-Onboarding-Assistant-system.git), here is a comprehensive `README.md` file to enhance the project's documentation:
-
----
-
 # Intelligent KYC Onboarding Assistant System
 
 An intelligent assistant designed to automate the client onboarding process by leveraging advanced technologies such as Optical Character Recognition (OCR) and Natural Language Processing (NLP). This system streamlines Know Your Customer (KYC) procedures, ensuring efficiency and compliance in client verification.
